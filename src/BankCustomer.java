@@ -6,11 +6,14 @@ public class BankCustomer {
     private String dateOfBirth;
 
     public void main(String[] args) {
-        BankCustomer customer = new BankCustomer();
-        customer.setAccountNumber(124812959);
-        customer.setCustomerAddress("11 Burger Drive");
-        customer.setCustomerName("Hill");
-        customer.setDateOfBirth("28/8/2000");
+        BankCustomer customer1 = new BankCustomer();
+        customer1.setAccountNumber(124812959);
+        customer1.setCustomerAddress("11 Burger Drive");
+        customer1.setCustomerName("Hill");
+        customer1.setDateOfBirth("28/8/2000");
+
+        BankCustomer[] customers = new BankCustomer[1];
+        customers[0] = customer1;
     }
 
     public void setAccountNumber(int accountNumber) {
