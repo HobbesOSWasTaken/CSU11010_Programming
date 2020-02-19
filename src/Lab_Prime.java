@@ -81,7 +81,7 @@ public class Lab_Prime {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a positive integer: ");
+        System.out.print("Enter a positive integer >= 2: ");
         int number = -1;
         try {
             number = scanner.nextInt();   
@@ -130,9 +130,13 @@ public class Lab_Prime {
             return null;
         }
         int[][] numbers = createSequence(n);
+        System.out.println(sequenceToString(numbers));
         for(int index = 0; index < numbers.length; index++) {
             if(numbers[index][1] != 1) {
-                crossOutHigherMultiples(numbers, numbers[index][0]);
+                if(numbers[index][0] < (int)Math.sqrt(n)) {
+                    crossOutHigherMultiples(numbers, numbers[index][0]);
+                    System.out.println(sequenceToString(numbers));
+                }
             }
         }
         return numbers;
@@ -143,10 +147,21 @@ public class Lab_Prime {
         if(numbers != null) {
             for(int index = 0; index < numbers.length; index++) {
                 if(numbers[index][1] == 0) {
-                    result += numbers[index][0] + ", ";
+                    if(index == numbers.length - 1) {
+                        result += numbers[index][0] + "";
+                    }
+                    else {
+                        result += numbers[index][0] + ", ";
+                    }
+
                 }
                 if(numbers[index][1] == 1) {
-                    result += "[" + numbers[index][0] + "], ";
+                    if(index == numbers.length - 1) {
+                        result += "[" + numbers[index][0] + "] ";
+                    }
+                    else {
+                        result += "[" + numbers[index][0] + "], ";
+                    }
                 }
             }
         }
@@ -155,10 +170,20 @@ public class Lab_Prime {
 
     public static String nonCrossedOutSubseqToString(int[][] numbers) {
         String result = "";
+        int primeCount = 0;
         if(numbers != null) {
             for(int index = 0; index < numbers.length; index++) {
                 if(numbers[index][1] == 0) {
-                    result += numbers[index][0] + ", ";
+                    primeCount = index;
+                }
+            }
+            for(int index = 0; index < numbers.length; index++) {
+                if(numbers[index][1] == 0) {
+                    if(index == primeCount) {
+                        result += numbers[index][0];
+                    } else {
+                        result += numbers[index][0] + ", ";
+                    }
                 }
             }
         }
